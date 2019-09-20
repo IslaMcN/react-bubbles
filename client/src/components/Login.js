@@ -9,10 +9,18 @@ const Login = (props) => {
     })
   
   return (
-    <>
+    <form>
       <h1>Welcome to the Bubble App!</h1>
-      <p>Build a login page here</p>
-    </>
+      <p>Login in here!</p>
+      <input
+      type="text"
+      name="username"
+      placeholder="username"
+      />
+      <input
+      type="password"
+      name="password"
+    </form>
   );
 }
 
