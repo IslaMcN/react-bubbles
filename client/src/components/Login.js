@@ -19,9 +19,9 @@ class Login extends React.Component {
     handleSubmit = e => {
       e.preventDefault();
       axiosWithAuth()
-      .post('http://localhost:5000/api/login', { username: 'Lambda School', password: 'i<3Lambd4' })
+      .post('http://localhost:5000/api/login', this.state.credentials)
       .then(res => {
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.payload);
         this.props.history.push('/BubblesPage');
       })
       

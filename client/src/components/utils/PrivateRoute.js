@@ -2,18 +2,19 @@ import React from 'react';
 import BubblePage from '../BubblePage';
 import {Route, Redirect} from 'react-router-dom';
 
-const PrivateRoute = ({ component: BubblePage, ...rest }) => (
+const PrivateRoute = ({ component: Component, ...rest }) => {
+   return( 
     <Route
       {...rest}
-      render={props =>
-        localStorage.getItem("token") ? (
-          <BubblePage {...props} />
-        ) : (
-          <Redirect to="/login" />
-        )
+      render={() =>{
+       if (localStorage.getItem('token'))  {
+          return <BubblePage  />;
+        } else {
+          return <Redirect to="/login" />;
+        }}
       }
-    />
-  );
+    />)
+  };
 
   export default PrivateRoute;
   

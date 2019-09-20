@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import BubblePage from '../src/components/BubblePage';
 import Login from "./components/Login";
 import "./styles.scss";
-import ColorList from "./components/ColorList";
 import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
