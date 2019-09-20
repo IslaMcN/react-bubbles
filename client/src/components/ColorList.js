@@ -101,7 +101,43 @@ axios
         </form>
       )}
       <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+     
+     <div className="quotes-form">
+       <h2>POST (add) a new quote</h2>
+       <form onSubmit={this.postMessage}>
+         <input
+           type="text"
+           name="quote"
+           placeholder="Quote"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.quote}
+         />
+         <input
+           type="text"
+           name="character"
+           placeholder="Character"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.character}
+         />
+         <input
+           type="text"
+           name="movie"
+           placeholder="Movie"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.movie}
+         />
+         
+         <button className="quotes-btn" type="submit">
+           POST quote
+         </button>
+       </form>
+     </div>
+   );
+ }
+
+ 
+
+
     </div>
   );
 };

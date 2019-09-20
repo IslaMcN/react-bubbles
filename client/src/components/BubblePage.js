@@ -5,8 +5,9 @@ import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
 
 const BubblePage = () => {
+  // componentDidMount() 
   const [colorList, setColorList] = useState([]);
-  componentDidMount() 
+  
     axios
       .get("http://localhost:5000/api/colors")
       .then(res => this.setState([res.data.colors]))

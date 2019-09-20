@@ -9,39 +9,41 @@ class Login extends React.Component {
       }
     };
     handleChange = e => {
-      this.ListeningStateChangedEvent({
+      this.setState({
         credentials: {
-          ...this.StaticRange.credentials,
+          ...this.state.credentials,
           [e.target.name]: e.target.value
         }
       });
     };
     handleSubmit = e => {
-      e.preventDefault;
+      e.preventDefault();
       axiosWithAuth()
-      .post('/api/login', { username: 'Lambda School', password: 'i<3Lambd4' })
+      .post('http://localhost:5000/api/login', { username: 'Lambda School', password: 'i<3Lambd4' })
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        props.history.push('/login');
+        this.props.history.push('/BubblesPage');
       })
       
     }
     render() {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={this.handleSubmit}>
       <h1>Welcome to the Bubble App!</h1>
       <p>Login in here!</p>
       <input
       type="text"
       name="username"
       placeholder="username"
+      value={this.state.credentials.username}
+      onChange={this.handleChange}
       />
       <input
       type="password"
       name="password"
       value={this.state.credentials.password}
-      onChange
-      placeholder="password"\
+      onChange={this.handleChange}
+      placeholder="password"
       />
       <button>Login!</button>
     </form>
