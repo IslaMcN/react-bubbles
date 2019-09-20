@@ -102,7 +102,7 @@ axios
       )}
       <div className="spacer" />
      
-     <div className="quotes-form">
+     {/* <div className="quotes-form">
        <h2>POST (add) a new quote</h2>
        <form onSubmit={this.postMessage}>
          <input
@@ -133,7 +133,7 @@ axios
        </form>
      </div>
    );
- }
+ } */}
 
  
 

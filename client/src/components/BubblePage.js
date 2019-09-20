@@ -3,14 +3,15 @@ import axios from "axios";
 
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 const BubblePage = () => {
   // componentDidMount() 
   const [colorList, setColorList] = useState([]);
   
-    axios
+    axiosWithAuth()
       .get("http://localhost:5000/api/colors")
-      .then(res => this.setState([res.data.colors]))
+      .then(res => console.log(res))
       .catch(err => console.log('Nope', err));
   
 
