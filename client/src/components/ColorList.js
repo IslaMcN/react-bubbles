@@ -16,16 +16,40 @@ const ColorList = ({ colors, updateColors }) => {
     setColorToEdit(color);
   };
 
-  const saveEdit = e => {
-    e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
-  };
+   
+const saveEdit = e => {
+ 
+ 
+  e.preventDefault();
 
-  const deleteColor = color => {
-    // make a delete request to delete this color
-  };
+axios     
+   .put('http://localhost:5000/api/colors/:id')
+      .then(response => {
+        
+        updateColors(response.data.colors.color)
+      })
+      .catch(err => {
+        console.log('No', err)
+      });
+
+
+
+};
+
+
+   
+ const deleteColor = color => {
+  axios     
+    .delete('http://localhost:5000/api/colors/:id', color)
+       .then(response => {
+        updateColors(response.data.colors.color)
+       })
+       .catch(err => {
+        console.log('Nu-uh', err)
+       });
+ 
+ };
+
 
   return (
     <div className="colors-wrap">
@@ -77,7 +101,43 @@ const ColorList = ({ colors, updateColors }) => {
         </form>
       )}
       <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+     
+     {/* <div className="quotes-form">
+       <h2>POST (add) a new quote</h2>
+       <form onSubmit={this.postMessage}>
+         <input
+           type="text"
+           name="quote"
+           placeholder="Quote"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.quote}
+         />
+         <input
+           type="text"
+           name="character"
+           placeholder="Character"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.character}
+         />
+         <input
+           type="text"
+           name="movie"
+           placeholder="Movie"
+           onChange={this.handleChange}
+           value={this.state.movieQuote.movie}
+         />
+         
+         <button className="quotes-btn" type="submit">
+           POST quote
+         </button>
+       </form>
+     </div>
+   );
+ } */}
+
+ 
+
+
     </div>
   );
 };

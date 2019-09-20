@@ -1,14 +1,54 @@
 import React from "react";
+import axiosWithAuth from './utils/axiosWithAuth';
 
-const Login = () => {
-  // make a post request to retrieve a token from the api
-  // when you have handled the token, navigate to the BubblePage route
+class Login extends React.Component {
+    state= {
+      credentials: {
+        username: '',
+        password: ''
+      }
+    };
+    handleChange = e => {
+      this.setState({
+        credentials: {
+          ...this.state.credentials,
+          [e.target.name]: e.target.value
+        }
+      });
+    };
+    handleSubmit = e => {
+      e.preventDefault();
+      axiosWithAuth()
+      .post('http://localhost:5000/api/login', this.state.credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+        this.props.history.push('/BubblesPage');
+      })
+      
+    }
+    render() {
   return (
-    <>
+    <form onSubmit={this.handleSubmit}>
       <h1>Welcome to the Bubble App!</h1>
-      <p>Build a login page here</p>
-    </>
+      <p>Login in here!</p>
+      <input
+      type="text"
+      name="username"
+      placeholder="username"
+      value={this.state.credentials.username}
+      onChange={this.handleChange}
+      />
+      <input
+      type="password"
+      name="password"
+      value={this.state.credentials.password}
+      onChange={this.handleChange}
+      placeholder="password"
+      />
+      <button>Login!</button>
+    </form>
   );
-};
+    }
+}
 
 export default Login;
