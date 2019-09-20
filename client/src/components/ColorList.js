@@ -16,16 +16,40 @@ const ColorList = ({ colors, updateColors }) => {
     setColorToEdit(color);
   };
 
-  const saveEdit = e => {
-    e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
-  };
+   
+const saveEdit = e => {
+ 
+ 
+  e.preventDefault();
 
-  const deleteColor = color => {
-    // make a delete request to delete this color
-  };
+axios     
+   .put('http://localhost:5000/api/colors/:id')
+      .then(response => {
+        
+        updateColors(response.data.colors.color)
+      })
+      .catch(err => {
+        console.log('No', err)
+      });
+
+
+
+};
+
+
+   
+ const deleteColor = color => {
+  axios     
+    .delete('http://localhost:5000/api/colors/:id', color)
+       .then(response => {
+        updateColors(response.data.colors.color)
+       })
+       .catch(err => {
+        console.log('Nu-uh', err)
+       });
+ 
+ };
+
 
   return (
     <div className="colors-wrap">
